@@ -10,4 +10,3 @@ describe "refute_exists" do
     error.message.must_match(/expected `#{root_dir}` not to exist/im)
   end
 end
-
