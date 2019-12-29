@@ -5,8 +5,6 @@ $:.unshift(lib) unless $:.include?(lib)
 require 'pathname'
 require 'minitest/filesystem/version'
 
-signing_key_file = ENV['RUBYGEMS_SIGNING_KEY_FILE']
-
 Gem::Specification.new do |gem|
   gem.name          = "minitest-filesystem"
   gem.version       = Minitest::Filesystem::VERSION
@@ -29,6 +27,4 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency "flog"
   gem.add_development_dependency "flay"
 
-  gem.signing_key = Pathname.new(signing_key_file).expand_path if signing_key_file
-  gem.cert_chain  = ["rubygems-stefanozanella.crt"]
 end
