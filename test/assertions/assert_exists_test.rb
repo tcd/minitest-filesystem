@@ -1,4 +1,4 @@
-require 'test_helper'
+require "test_helper"
 
 describe "assert_exists" do
   let(:root_dir) { Pathname.new(Dir.mktmpdir("minitestfs")) }

@@ -1,21 +1,21 @@
-require 'test_helper'
+require "test_helper"
 
 describe "filesystem must_exist_within" do
-  let(:root_dir) { Pathname.new(Dir.mktmpdir('minitestfs')) }
+  let(:root_dir) { Pathname.new(Dir.mktmpdir("minitestfs")) }
 
   before do
-    (root_dir + 'a_directory').mkdir
-    (root_dir + 'a_subdirectory').mkdir
-    (root_dir + 'a_subdirectory' + 'deeper_subdirectory').mkdir
-    (root_dir + 'not_a_file').mkdir
-    (root_dir + 'unchecked_dir').mkdir
-  
-    touch root_dir + 'a_file'
-    touch root_dir + 'not_a_dir'
-    touch root_dir + 'a_subdirectory' + 'deeper_subdirectory' + 'another_file'
-    touch root_dir + 'unchecked_file'
+    (root_dir + "a_directory").mkdir
+    (root_dir + "a_subdirectory").mkdir
+    (root_dir + "a_subdirectory" + "deeper_subdirectory").mkdir
+    (root_dir + "not_a_file").mkdir
+    (root_dir + "unchecked_dir").mkdir
+
+    touch root_dir + "a_file"
+    touch root_dir + "not_a_dir"
+    touch root_dir + "a_subdirectory" + "deeper_subdirectory" + "another_file"
+    touch root_dir + "unchecked_file"
   end
-  
+
   after do
     rm root_dir
   end
