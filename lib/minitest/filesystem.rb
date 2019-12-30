@@ -3,18 +3,30 @@ require "minitest/filesystem/matcher"
 require "minitest/filesystem/matching_tree"
 
 module Minitest::Assertions
+  # @param dir [String,Pathname]
+  # @param msg [String] (nil)
   # @return [void]
   def assert_contains_filesystem(dir, msg = nil, &block)
     matcher = Minitest::Filesystem::Matcher.new(dir, &block)
     assert(matcher.match_found?, msg || matcher.message)
   end
 
+  # Fails unless `path` exists.
+  #
+  # @param path [String,Pathname]
+  # @param msg [String] (nil)
   # @return [void]
+  def assert_exists(path, msg = nil)
     msg ||= "expected '#{path}' to exist, but it doesn't"
     assert(File.exist?(path), msg)
   end
 
+  # Fails if `path` exists.
+  #
+  # @param path [String,Pathname]
+  # @param msg [String] (nil)
   # @return [void]
+  def refute_exists(path, msg = nil)
     msg ||= "expected '#{path}' not to exist, but it does"
     refute(File.exist?(path), msg)
   end
@@ -24,4 +36,3 @@ module Minitest::Assertions
     block
   end
 end
-
