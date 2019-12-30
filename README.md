@@ -11,15 +11,21 @@ Adds assertions and expectations to check filesystem content in a communicative 
 
 Add this line to your application's Gemfile:
 
-    gem 'minitest-filesystem'
+```ruby
+gem 'minitest-filesystem'
+```
 
 And then execute:
 
-    $ bundle
+```
+$ bundle
+```
 
 Or install it yourself as:
 
-    $ gem install minitest-filesystem
+```
+$ gem install minitest-filesystem
+```
 
 Once the gem is installed, just add this line to your `test_helper.rb`:
 
@@ -41,7 +47,7 @@ Let's suppose the following filesystem structure exists:
       * `subsubdir_1/`
   * `subdir_2/`
   * `subdir_3/`
-      * `link_1`
+      * `link_1`, `'...'`
       * `link_2`, `'../../file_1'`
 
 You can check if `root_dir` contains a specific structure:
@@ -84,27 +90,31 @@ suites look better. They're almost just syntactic sugar around the methods
 provided by `File`, `Dir` et al, but allow for improved code readability. So,
 for example, instead of writing
 
-    assert File.exists? "/a/file"
+```ruby
+assert File.exists? "/a/file"
+```
 
 you can write
 
-    assert_exists "/a/file"
+```ruby
+assert_exists "/a/file"
+```
 
 or, even better
 
-    "/a/file".must_exist
+```ruby
+"/a/file".must_exist
+```
 
 **Assertions**
 
-* `assert_exists`: test whether a specific path exists (no matter if file, dir,
-  symlink)
-* `refute_exists`: test whether a specific path doesn't exist (no matter if file, dir,
-  symlink)
+* `assert_exists`: test whether a specific path exists (no matter if file, dir, symlink)
+* `refute_exists`: test whether a specific path doesn't exist (no matter if file, dir, symlink)
 
 **Expectations**
 
-The meaning of the following expectation is the same as their assertive
-counterpart:
+The meaning of the following expectation is the same as their assertive counterpart:
+
 * `must_exist`
 * `wont_exist`
 
@@ -116,35 +126,3 @@ counterpart:
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
 
-## Changelog
-
-### 1.2.0
-
-* Added `assert_exists`, `refute_exists`, `must_exist`, `wont_exist`
-* Refactored previous test code to lighter syntax
-
-### 1.1.1
-
-* Minor refactorings and project infrastructure updates.
-
-### 1.1.0
-
-* Add support for testing symbolic links
-
-### 1.0.1
-
-* Remove CamelCase naming.
-
-### 1.0.0
-
-* Add support for Ruby 1.8.
-
-### 0.1.0
-
-* Refactor existing code
-* Add more tests around assertion
-* Infect `must_exist_within` expectation
-
-### 0.0.1
-
-* Extract assertion and matcher from current projects
