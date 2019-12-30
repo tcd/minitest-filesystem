@@ -8,10 +8,12 @@ module Minitest
       def initialize(root, &block)
         # @type [MatchingTree]
         @actual_tree = MatchingTree.new(root)
-        # @type [&block]
+        # @type [Block]
         @expected_tree = block
         # @type [Boolean]
         @is_matching = true
+        # @type [String]
+        @failure_msg = nil
       end
 
       # @return [Boolean]
@@ -91,7 +93,7 @@ module Minitest
 
       # @return [Boolean]
       def update_matching_status(check, msg)
-        @is_matching = @is_matching && check
+        @is_matching &&= check
         set_failure_msg(msg) unless @is_matching
 
         @is_matching
@@ -115,49 +117,6 @@ module Minitest
       # @return [void]
       def set_failure_msg(msg)
         @failure_msg ||= msg
-      end
-
-      class MatchingTree
-        # @return [Pathname]
-        attr_reader :root
-
-        # @return [void]
-        def initialize(root)
-          @root = Pathname.new(root)
-          @tree = expand_tree_under @root
-        end
-
-        # @return [Boolean]
-        def include?(entry)
-          @tree.include?(expand_path(entry))
-        end
-
-        # @return [Boolean]
-        def is_a?(entry, kind)
-          (expand_path entry).send("#{kind}?")
-        end
-
-        # @return [Boolean]
-        def has_target?(entry, target)
-          expand_path(target) == follow_link(entry)
-        end
-
-        # @return [Pathname]
-        def expand_path(file)
-          @root + Pathname.new(file)
-        end
-
-        # @return [Pathname]
-        def follow_link(link)
-          Pathname.new(File.readlink(expand_path(link)))
-        end
-
-        private
-
-        # @return [Array<Pathname>]
-        def expand_tree_under(dir)
-          Pathname.glob(dir.join("**/*"))
-        end
       end
 
     end

@@ -1,5 +1,6 @@
 require "minitest/filesystem/version"
 require "minitest/filesystem/matcher"
+require "minitest/filesystem/matching_tree"
 
 module Minitest::Assertions
   # @return [void]
