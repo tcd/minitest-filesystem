@@ -9,7 +9,7 @@ class AssertExistsTest < Minitest::Test
   def test_that_it_fails_when_the_given_path_is_not_found
     l = -> { assert_exists(@a_path) }
     error = assert_raises(Minitest::Assertion, &l)
-    assert_match(/expected `#{@a_path}` to exist/im, error.message)
+    assert_match("expected '#{@a_path}' to exist", error.message)
   end
 
   def test_that_it_allows_printing_of_custom_error_messages

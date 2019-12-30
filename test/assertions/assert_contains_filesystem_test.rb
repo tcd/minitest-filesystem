@@ -66,7 +66,7 @@ class AssertContainsFilesystemTest < Minitest::Test
     l = lambda { assert_contains_filesystem(@root_dir) { file "foo" } }
 
     error = assert_raises(Minitest::Assertion, &l)
-    assert_match(/expected `#{@root_dir}` to contain file `foo`/im, error.message)
+    assert_match(/expected '#{@root_dir}' to contain file 'foo'/im, error.message)
   end
 
   def test_fails_when_an_expected_symlink_isnt_found
@@ -75,7 +75,7 @@ class AssertContainsFilesystemTest < Minitest::Test
     end }
 
     error = assert_raises(Minitest::Assertion, &l)
-    assert_match(/expected `#{@root_dir}` to contain symlink `foo`/im, error.message)
+    assert_match(/expected '#{@root_dir}' to contain symlink 'foo'/im, error.message)
   end
 
   def test_fails_when_a_symlink_points_to_the_wrong_file
@@ -84,7 +84,7 @@ class AssertContainsFilesystemTest < Minitest::Test
     end }
 
     error = assert_raises(Minitest::Assertion, &l)
-    assert_match(/expected `link_to` to point to `nonexistent_target`/im, error.message)
+    assert_match(/expected 'link_to' to point to 'nonexistent_target'/im, error.message)
   end
 
   def test_fails_when_an_expected_directory_isnt_found
@@ -93,7 +93,7 @@ class AssertContainsFilesystemTest < Minitest::Test
     end }
 
     error = assert_raises(Minitest::Assertion, &l)
-    assert_match(/expected `#{@root_dir}` to contain directory `bar`/im, error.message)
+    assert_match(/expected '#{@root_dir}' to contain directory 'bar'/im, error.message)
   end
 
   def test_fails_when_an_expected_file_within_a_subdirectory_isnt_found
@@ -104,7 +104,7 @@ class AssertContainsFilesystemTest < Minitest::Test
     end }
 
     error = assert_raises(Minitest::Assertion, &l)
-      assert_match(/expected `#{@root_dir + 'a_subdirectory'}` to contain file `missing_file`/im, error.message)
+      assert_match(/expected '#{@root_dir + 'a_subdirectory'}' to contain file 'missing_file'/im, error.message)
   end
 
   def test_fails_when_a_directory_is_expected_to_be_a_file
@@ -113,7 +113,7 @@ class AssertContainsFilesystemTest < Minitest::Test
     end }
 
     error = assert_raises(Minitest::Assertion, &l)
-    assert_match(/expected `not_a_file` to be a file/im, error.message)
+    assert_match(/expected 'not_a_file' to be a file/im, error.message)
   end
 
   def test_fails_when_a_file_is_expected_to_be_a_directory
@@ -122,7 +122,7 @@ class AssertContainsFilesystemTest < Minitest::Test
     end }
 
     error = assert_raises(Minitest::Assertion, &l)
-    assert_match(/expected `not_a_dir` to be a directory/im, error.message)
+    assert_match(/expected 'not_a_dir' to be a directory/im, error.message)
   end
 
   def test_fails_when_a_file_is_expected_to_be_a_symlink
@@ -131,7 +131,7 @@ class AssertContainsFilesystemTest < Minitest::Test
     end }
 
     error = assert_raises(Minitest::Assertion, &l)
-    assert_match(/expected `not_a_link` to be a symlink/im, error.message)
+    assert_match(/expected 'not_a_link' to be a symlink/im, error.message)
   end
 
   def test_allows_to_print_custom_error_messages

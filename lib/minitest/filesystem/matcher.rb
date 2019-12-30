@@ -101,17 +101,17 @@ module Minitest
 
       # @return [String]
       def not_found_msg_for(entry, kind)
-        "Expected `#{@actual_tree.root}` to contain #{kind} `#{entry}`."
+        "Expected '#{@actual_tree.root}' to contain #{kind} '#{entry}'."
       end
 
       # @return [String]
       def mismatch_msg_for(entry, kind)
-        "Expected `#{entry}` to be a #{kind}, but it was not."
+        "Expected '#{entry}' to be a #{kind}, but it was not."
       end
 
       # @return [String]
       def link_target_mismatch_msg_for(link, target)
-        "Expected `#{link}` to point to `#{target}`, but it pointed to #{@actual_tree.follow_link(link)}"
+        "Expected '#{link}' to point to '#{target}', but it pointed to #{@actual_tree.follow_link(link)}"
       end
 
       # @return [void]

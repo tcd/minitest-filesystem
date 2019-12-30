@@ -10,14 +10,12 @@ module Minitest::Assertions
   end
 
   # @return [void]
-  def assert_exists(path, msg = nil, &block)
-    msg ||= "expected `#{path}` to exist, but it doesn't"
+    msg ||= "expected '#{path}' to exist, but it doesn't"
     assert(File.exist?(path), msg)
   end
 
   # @return [void]
-  def refute_exists(path, msg = nil, &block)
-    msg ||= "expected `#{path}` not to exist, but it does"
+    msg ||= "expected '#{path}' not to exist, but it does"
     refute(File.exist?(path), msg)
   end
 

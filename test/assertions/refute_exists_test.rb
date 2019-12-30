@@ -9,6 +9,6 @@ class RefuteExistsTest < Minitest::Test
     error = assert_raises(Minitest::Assertion) do
       refute_exists(@root_dir)
     end
-    assert_match(/expected `#{@root_dir}` not to exist/im, error.message)
+    assert_match("expected '#{@root_dir}' not to exist", error.message)
   end
 end
