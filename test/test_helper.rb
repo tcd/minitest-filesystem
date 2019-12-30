@@ -26,18 +26,3 @@ require "minitest/filesystem"
 
 require "tmpdir"
 require "fileutils"
-
-# alias for `FileUtils.touch(path)`
-def touch(path)
-  FileUtils.touch(path)
-end
-
-# alias for `FileUtils.rm_rf(path)`
-def rm(path)
-  FileUtils.rm_rf(path)
-end
-
-# alias for `FileUtils.rm_rf(path)`
-def symlink(path, link)
-  FileUtils.ln_s(path, link)
-end

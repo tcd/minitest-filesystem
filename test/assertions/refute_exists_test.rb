@@ -1,12 +1,14 @@
 require "test_helper"
 
-describe "refute_exists" do
-  let(:root_dir) { Pathname.new(Dir.mktmpdir("minitestfs")) }
+class RefuteExistsTest < Minitest::Test
+  def setup
+    @root_dir = Pathname.new(Dir.mktmpdir("minitestfs"))
+  end
 
-  it "fails when the given path is found" do
-    l = lambda { refute_exists(root_dir) }
-
-    error = assert_raises(Minitest::Assertion, &l)
-    error.message.must_match(/expected `#{root_dir}` not to exist/im)
+  def test_that_it_fails_when_the_given_path_is_found
+    error = assert_raises(Minitest::Assertion) do
+      refute_exists(@root_dir)
+    end
+    assert_match(/expected `#{@root_dir}` not to exist/im, error.message)
   end
 end
